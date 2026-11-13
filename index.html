@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qwen starter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <!-- 1. MODEL LOADING -------------------------------------------------- -->
+    <section id="loader">
+      <button id="loadBtn">Load model (~300–400 MB, first time only)</button>
+      <progress id="progress" value="0" max="1"></progress>
+      <p id="status">Model not loaded.</p>
+    </section>
+
+    <!-- 2. WHEELS (where illusion of control lives) ----------------------- -->
+    <!-- app.js draws the slices inside each <svg>. Click a wheel to spin it. -->
+    <section id="wheels">
+      <figure class="wheel-box">
+        <div class="wheel-wrap" id="tempWrap">
+          <svg class="pointer" viewBox="0 0 40 50"><path d="M20 50 L4 18 A16 16 0 1 1 36 18 Z"/></svg>
+          <svg class="wheel" id="tempWheel" viewBox="-102 -102 204 204"></svg>
+        </div>
+        <figcaption>Complexity<span class="val" id="tempVal">–</span></figcaption>
+      </figure>
+
+      <figure class="wheel-box">
+        <div class="wheel-wrap" id="luckWrap">
+          <svg class="pointer" viewBox="0 0 40 50"><path d="M20 50 L4 18 A16 16 0 1 1 36 18 Z"/></svg>
+          <svg class="wheel" id="luckWheel" viewBox="-102 -102 204 204"></svg>
+        </div>
+        <figcaption>Luck <span class="val" id="luckVal">–</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- 3. INPUT ----------------------------------------------------------- -->
+    <form id="form" autocomplete="off">
+      <input type="text" id="input" placeholder="Ask something…">
+      <button id="sendBtn" disabled>Send</button>
+    </form>
+
+    <!-- 4. COMPUTATION (what happens between input and output) ------------ -->
+    <section>
+      <h2>Computation</h2>
+      <ol id="log"></ol>
+    </section>
+
+    <!-- 5. OUTPUT + REWARD ------------------------------------------------- -->
+    <section>
+      <h2>Output</h2>
+      <p id="output"></p>
+      <div id="rarityBar" class="rarity-bar" title="one slice per token · grey = expected, blue = unusual, gold = very strange"></div>
+      <p id="reward"></p>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
